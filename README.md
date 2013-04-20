@@ -19,3 +19,21 @@ Basic Queue example usage:
   }
   queue.shutdown();
 ```
+
+Priority Queue Usage Example:
+```java
+ PriorityTaskQueue queue = new PriorityTaskQueue("testQueueName",3, "AmazonKey", "AmazonSecretKey"); 
+ for(int i=0;i<100;i++){
+   Map<String,String> m = new HashMap<String,String>();
+   m.put("url", "http://example.com");
+   m.put("downloadImages", "Y");
+   queue.addTask(m,i%3);
+ }
+ while((Task t = queue.getTask())!=null){
+   //do stuff with task
+   t.completeTask();
+ }
+ queue.shutdown();
+ ```
+
+
